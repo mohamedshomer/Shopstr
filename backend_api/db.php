@@ -1,17 +1,14 @@
+
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 $host = "127.0.0.1";
+$db   = "clothing_system";
 $user = "root";
-$password = "";
-$db = "clothing_system";
+$pass = ""; // ضع كلمة المرور إذا موجودة
 
-$conn = new mysqli($host,$user,$password,$db);
-
-if($conn->connect_error){
- die("Database connection failed: " . $conn->connect_error);
+try {
+    $con = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die(json_encode(["status"=>"error","message"=>$e->getMessage()]));
 }
-
 ?>
