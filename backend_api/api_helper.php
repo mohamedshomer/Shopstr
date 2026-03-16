@@ -43,7 +43,7 @@ function require_auth() {
 // CRUD FUNCTIONS
 
 // GET ALL
-function getAll($table, $where = "", $values = [], $json = true) {
+function getAllData($table, $where = "", $values = [], $json = true) {
     global $con;
     $sql = "SELECT * FROM $table";
     if ($where != "") $sql .= " WHERE $where";
@@ -69,7 +69,7 @@ function getOne($table, $where, $values = [], $json = true) {
 }
 
 // INSERT
-function insertRow($table, $data, $json = true) {
+function insertData($table, $data, $json = true) {
     global $con;
     $fields = implode(",", array_keys($data));
     $placeholders = implode(",", array_map(fn($k)=>":$k", array_keys($data)));
@@ -85,7 +85,7 @@ function insertRow($table, $data, $json = true) {
 }
 
 // UPDATE
-function updateRow($table, $data, $where, $whereValues = [], $json = true) {
+function updateData($table, $data, $where, $whereValues = [], $json = true) {
     global $con;
     $set = implode(", ", array_map(fn($k)=>"`$k`=:$k", array_keys($data)));
     $stmt = $con->prepare("UPDATE $table SET $set WHERE $where");
@@ -100,7 +100,7 @@ function updateRow($table, $data, $where, $whereValues = [], $json = true) {
 }
 
 // DELETE
-function deleteRow($table, $where, $whereValues = [], $json = true) {
+function deleteData($table, $where, $whereValues = [], $json = true) {
     global $con;
     $stmt = $con->prepare("DELETE FROM $table WHERE $where");
     if ($stmt->execute($whereValues)) {
