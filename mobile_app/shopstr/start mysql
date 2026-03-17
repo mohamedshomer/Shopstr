@@ -1,0 +1,3 @@
+docker ps
+docker start shopstr-db
+docker exec -it shopstr-db mysql -u root
