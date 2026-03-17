@@ -3,7 +3,7 @@ require_once __DIR__ . "/../../vendor/autoload.php"; // مسار صحيح من a
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
-$jwt_secret_key = "SHOPSTR_SECRET_KEY_2026";
+$jwt_secret_key = "SHOPSTR_SECRET_KEY_2026SHOPSTR_SECRET_KEY_2026_abcdefghijklmnopqrstuvwxyz_P@ssw0rd";
 
 function generateJWT($payload, $exp = 3600) {
     global $jwt_secret_key;
